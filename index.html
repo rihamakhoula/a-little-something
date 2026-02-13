@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Little Something</title>
+
 <style>
 body {
     margin: 0;
@@ -18,15 +19,8 @@ section {
     padding: 80px 20px;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
+h1 { font-size: 3rem; }
+h2 { margin-bottom: 20px; }
 
 button {
     padding: 12px 25px;
@@ -37,130 +31,192 @@ button {
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    background-color: #ff5c7c;
-}
+button:hover { background-color: #ff5c7c; }
 
-.quiz {
-    margin-top: 30px;
-}
-
+/* MODAL */
 .modal {
     display: none;
     position: fixed;
     z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
+    inset: 0;
+    background: rgba(0,0,0,0.7);
 }
 
 .modal-content {
     background: #2b1f24;
-    margin: 15% auto;
+    margin: 12% auto;
     padding: 30px;
     border-radius: 15px;
-    width: 80%;
-    max-width: 400px;
+    max-width: 420px;
 }
 
-.close {
-    cursor: pointer;
-    float: right;
-    font-size: 20px;
-}
+.hidden { display: none; }
 
-/* Floating hearts */
+/* HEARTS */
 .heart {
     position: fixed;
     bottom: -20px;
     color: #ff8fa3;
     animation: floatUp 8s linear infinite;
-    font-size: 20px;
 }
 
 @keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-100vh); opacity: 0; }
+    to { transform: translateY(-100vh); opacity: 0; }
 }
 </style>
 </head>
+
 <body>
+
+<!-- QUIZ MODAL -->
+<div id="quizModal" class="modal">
+  <div class="modal-content">
+    <h2 id="quizQuestion"></h2>
+    <div id="quizOptions"></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="hidden">
 
 <section>
     <h1>A Little Something</h1>
-    <div class="subtitle">Nothing loud. Just true.</div>
-    <p style="margin-top:40px; max-width:600px; margin-left:auto; margin-right:auto;">
-        I’m not usually dramatic about things.  
-        But I wanted to make something small for you.
+    <p>Nothing loud. Just true.</p>
+</section>
+
+<section>
+    <p>
+        <!-- ✍️ EDIT THIS MESSAGE -->
+        I’m not very expressive usually… but this is me trying, in my own awkward way. 
+        If this feels cringe, just ignore it and pretend I never sent it 😅
     </p>
 </section>
 
 <section>
-    <h2>A Few Things</h2>
-    <p>You’re calm in ways I admire.</p>
-    <p>You make silence feel comfortable.</p>
-    <p>You stay. That matters.</p>
-</section>
-
-<section class="quiz">
-    <h2>Small Test</h2>
-    <p>What do I secretly like most about you?</p>
-    <button onclick="showModal('Correct. Your calm nature makes everything steady.')">Your calm nature</button>
-    <button onclick="showModal('Not quite. Try again.')">Your coding skills</button>
-    <button onclick="showModal('Hmm. That’s not the main reason.')">Your looks</button>
-</section>
-
-<section class="quiz">
-    <p>What feels safest with you?</p>
-    <button onclick="showModal('Yes. Silence with you feels easy.')">Sitting in silence</button>
-    <button onclick="showModal('Not exactly.')">Talking nonstop</button>
-    <button onclick="showModal('Close, but not that.')">Planning everything</button>
+    <!-- 📸 IMAGE SECTION -->
+    <!-- Add your image filenames below -->
+    <img src="image1.jpg" width="250" style="border-radius:15px; margin:10px;">
+    <img src="image2.jpg" width="250" style="border-radius:15px; margin:10px;">
 </section>
 
 <section>
-    <h2>Final Status</h2>
-    <p>Status: Connected</p>
-    <p>Trust Level: High</p>
-    <p>Future: Promising</p>
-    <p style="margin-top:30px;">I choose you. Still.</p>
+    <p>
+        <!-- ✍️ FINAL MESSAGE -->
+        Sir, just a small note to thank you for your dedicated service till date — chocolates, gifts, flowers, everything noted and approved ✔️
+Looking forward to being spoiled even more lol 😄
+    </p>
 </section>
 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <p id="modalText"></p>
-  </div>
 </div>
 
 <script>
-function showModal(message) {
-    document.getElementById("modalText").innerText = message;
-    document.getElementById("myModal").style.display = "block";
+/* ✍️ EDIT YOUR QUIZ HERE */
+ {
+    question: "When did we first meet?",
+    options: [
+      { 
+        text: "28.08.25", 
+        correct: true, 
+        message: "Okay good. You remember. That mattered ❤️" 
+      },
+      { 
+        text: "14.02.25", 
+        correct: false, 
+        message: "Hmm… knew you forgot 💔" 
+      },
+      { 
+        text: "01.01.25", 
+        correct: false, 
+        message: "Wow. That confident and still wrong 😌" 
+      }
+    ]
+  },
+  {
+    question: "How many dates have we gone on so far?",
+    options: [
+      { 
+        text: "4", 
+        correct: true, 
+        message: "Yes. Four. And somehow each one stayed with me." 
+      },
+      { 
+        text: "2", 
+        correct: false, 
+        message: "Only two? That’s unfair to the other memories." 
+      },
+      { 
+        text: "5", 
+        correct: false, 
+        message: "Optimistic. I like that. But no 😄" 
+      }
+    ]
+  },
+  {
+  question: "Who fell first?",
+  options: [
+    { 
+      text: "You 😌", 
+      correct: true, 
+      message: "I mean… obviously. I saw it in your eyes." 
+    },
+    { 
+      text: "Me 🙄", 
+      correct: false, 
+      message: "Oh wow. Bold of you to lie like that." 
+    },
+    { 
+      text: "At the same time", 
+      correct: false, 
+      message: "That’s cute… but no." 
+    }
+  ]
 }
 
-function closeModal() {
-    document.getElementById("myModal").style.display = "none";
+];
+
+/* QUIZ LOGIC */
+let currentQuiz = 0;
+const modal = document.getElementById("quizModal");
+const questionEl = document.getElementById("quizQuestion");
+const optionsEl = document.getElementById("quizOptions");
+
+function showQuiz() {
+  modal.style.display = "block";
+  questionEl.innerText = quizzes[currentQuiz].question;
+  optionsEl.innerHTML = "";
+
+  quizzes[currentQuiz].options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt.text;
+    btn.onclick = () => {
+      alert(opt.message);   // 👈 you can change this message text freely
+      currentQuiz++;
+      if (currentQuiz < quizzes.length) {
+        showQuiz();
+      } else {
+        modal.style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+      }
+    };
+    optionsEl.appendChild(btn);
+  });
 }
 
-// Floating hearts generator
+window.onload = showQuiz;
+
+/* HEARTS */
 setInterval(() => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 8000);
-}, 1000);
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}, 1200);
 </script>
 
 </body>
 </html>
+
